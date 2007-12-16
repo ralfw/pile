@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pile.Engine.Transient", "Pile.Engine.Transient\Pile.Engine.Transient.csproj", "{A6CA464C-AAEC-4639-8D0D-3B67616DC1DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test.Blackbox.TransientPile", "test.Blackbox.TransientPile\test.Blackbox.TransientPile.csproj", "{3701C03B-8FDF-4727-BB5C-CDCD332004F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6CA464C-AAEC-4639-8D0D-3B67616DC1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6CA464C-AAEC-4639-8D0D-3B67616DC1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6CA464C-AAEC-4639-8D0D-3B67616DC1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6CA464C-AAEC-4639-8D0D-3B67616DC1DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3701C03B-8FDF-4727-BB5C-CDCD332004F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3701C03B-8FDF-4727-BB5C-CDCD332004F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3701C03B-8FDF-4727-BB5C-CDCD332004F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3701C03B-8FDF-4727-BB5C-CDCD332004F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
