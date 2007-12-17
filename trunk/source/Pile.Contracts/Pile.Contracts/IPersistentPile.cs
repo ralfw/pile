@@ -10,7 +10,9 @@ namespace Pile.Contracts
         void Close();
 
         long Create(string text);
+        long Create(string text, out bool isNew);
         long Create(string text, long qualifierRelation);
+        long Create(string text, long qualifierRelation, out bool isNew);
 
         long Lookup(string text);
     }
