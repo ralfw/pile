@@ -18,7 +18,9 @@ namespace Pile.Contracts
         bool IsRoot(long relation);
 
         long Create(long nParentRelation, long aParentRelation);
+        long Create(long nParentRelation, long aParentRelation, out bool isNew);
         long Create(long nParentRelation, long aParentRelation, long qualifierRelation);
+        long Create(long nParentRelation, long aParentRelation, long qualifierRelation, out bool isNew);
 
         long Lookup(long nParentRelation, long aParentRelation);
 
