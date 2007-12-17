@@ -14,22 +14,22 @@ namespace Pile.Contracts
     public interface IPile
     {
         long Create();
-        long Create(long qualifierRelation);
+        long Create(long qualifier);
         bool IsRoot(long relation);
 
-        long Create(long nParentRelation, long aParentRelation);
-        long Create(long nParentRelation, long aParentRelation, out bool isNew);
-        long Create(long nParentRelation, long aParentRelation, long qualifierRelation);
-        long Create(long nParentRelation, long aParentRelation, long qualifierRelation, out bool isNew);
+        long Create(long nParent, long aParent);
+        long Create(long nParent, long aParent, out bool isNew);
+        long Create(long nParent, long aParent, long qualifier);
+        long Create(long nParent, long aParent, long qualifier, out bool isNew);
 
-        long Lookup(long nParentRelation, long aParentRelation);
+        long Lookup(long nParent, long aParent);
 
-        void GetParents(long childRelation, out long nParantRelation, out long aParentRelation);
-        IEnumerable<long> GetChildren(long parentRelation, ParentModes mode);
-        IEnumerable<long> GetChildren(long parentRelation, ParentModes mode, long qualifierRelation);
+        bool TryGetParents(long childRelation, out long nParent, out long aParent);
+        IEnumerable<long> GetChildren(long parent, ParentModes mode);
+        IEnumerable<long> GetChildren(long parent, ParentModes mode, long qualifier);
         
-        long GetQualifier(long qualifiedRelation);
-        IEnumerable<long> GetQualified(long qualifierRelation);
+        long GetQualifier(long qualified);
+        IEnumerable<long> GetQualified(long qualifier);
 
         int CountOfRoots { get; }
         int CountOfRelations { get; }

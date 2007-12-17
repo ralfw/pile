@@ -11,8 +11,8 @@ namespace Pile.Contracts
 
         long Create(string text);
         long Create(string text, out bool isNew);
-        long Create(string text, long qualifierRelation);
-        long Create(string text, long qualifierRelation, out bool isNew);
+        long Create(string text, long qualifier);
+        long Create(string text, long qualifier, out bool isNew);
 
         long Lookup(string text);
     }
