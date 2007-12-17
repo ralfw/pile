@@ -6,6 +6,7 @@ namespace Pile.Contracts
 {
     public interface IPersistentPile : IPile, IDisposable
     {
+        void Open();
         void Open(string connectionString);
         void Close();
 
