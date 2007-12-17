@@ -48,6 +48,12 @@
     <Compile Include="testit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pile.Engine.Transient\Pile.Engine.Transient.csproj">
+      <Project>{A6CA464C-AAEC-4639-8D0D-3B67616DC1DB}</Project>
+      <Name>Pile.Engine.Transient</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
