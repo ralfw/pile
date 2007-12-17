@@ -28,5 +28,8 @@ namespace Pile.Contracts
         
         long GetQualifier(long qualifiedRelation);
         IEnumerable<long> GetQualified(long qualifierRelation);
+
+        int CountOfRoots { get; }
+        int CountOfRelations { get; }
     }
 }
