@@ -2,18 +2,94 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using Pile.Contracts;
+
 namespace TextAssimilator
 {
     public class TextAssimilator
     {
+        #region vars, ctor
+        IPile pile;
+        long rootOfAllStrings;
+
+        public TextAssimilator()
+        {
+            this.pile = new Pile.Engine.Transient.TransientPile();
+
+            // allocate root relations for all ASCII chars (byte values 0..255)
+            for (int i = 1; i < 256; i++)
+                this.pile.Create();
+
+            // create relation to connect all assimilated strings to
+            this.rootOfAllStrings = this.pile.Create();
+        }
+        #endregion
+
+        #region public functional interface
         public int Assimilate(string text)
         {
-            return 0;
+            byte[] bytes = System.Text.Encoding.Default.GetBytes(text);
+            if (bytes.Length > 0)
+            {
+                long currTextTop = bytes[0];
+                for (int i = 1; i < bytes.Length; i++)
+                    currTextTop = this.pile.Create(currTextTop, bytes[i]);
+
+                this.pile.Create(this.rootOfAllStrings, currTextTop);
+            }
+            else
+                this.pile.Create(this.rootOfAllStrings, this.pile.Create());
+
+            return new List<long>(this.pile.GetChildren(this.rootOfAllStrings, ParentModes.normative)).Count - 1;
         }
+
 
         public string Regenerate(int index)
         {
-            return "";
+            List<long> stringRelations = new List<long>(this.pile.GetChildren(this.rootOfAllStrings, ParentModes.normative));
+            if (index >= 0 && index < stringRelations.Count)
+            {
+                long nParent, currTextTop;
+                this.pile.TryGetParents(stringRelations[index], out nParent, out currTextTop);
+                if (!this.pile.IsRoot(currTextTop))
+                {
+                    List<byte> text = new List<byte>();
+                    Regenerate(text, currTextTop);
+                    return System.Text.Encoding.Default.GetString(text.ToArray());
+                }
+                else if (currTextTop < 256)
+                    return System.Text.Encoding.Default.GetString(new byte[] { (byte)currTextTop }); // single letter string
+                else
+                    return ""; // empty string
+            }
+            else
+                return ""; // invalid index
         }
+
+        private void Regenerate(List<byte> text, long currTextTop)
+        {
+            if (currTextTop < 256)
+            {
+                // leftmost char reached
+                text.Add((byte)currTextTop);
+            }
+            else
+            {
+                long nParent, aParent;
+                this.pile.TryGetParents(currTextTop, out nParent, out aParent);
+                Regenerate(text, nParent);
+                text.Add((byte)aParent);
+            }
+        }
+
+
+        public int Count
+        {
+            get
+            {
+                return new List<long>(this.pile.GetChildren(this.rootOfAllStrings, ParentModes.normative)).Count;
+            }
+        }
+        #endregion
     }
 }
