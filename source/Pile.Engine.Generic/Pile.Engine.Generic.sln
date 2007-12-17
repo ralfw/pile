@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pile.Engine.Generic", "Pile.Engine.Generic\Pile.Engine.Generic.csproj", "{C5E70ADA-A726-43FF-9CF2-5C812A9F1790}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test.Blackbox.MemoryPile", "test.Blackbox.MemoryPile\test.Blackbox.MemoryPile.csproj", "{811657A1-8477-46F8-839D-68BC0BBB9063}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Console.TextAssimilator", "Demo.Console.TextAssimilator\Demo.Console.TextAssimilator.csproj", "{44ECF0CF-4793-4D5E-AEB9-B167E038BF00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5E70ADA-A726-43FF-9CF2-5C812A9F1790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E70ADA-A726-43FF-9CF2-5C812A9F1790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E70ADA-A726-43FF-9CF2-5C812A9F1790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E70ADA-A726-43FF-9CF2-5C812A9F1790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811657A1-8477-46F8-839D-68BC0BBB9063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811657A1-8477-46F8-839D-68BC0BBB9063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811657A1-8477-46F8-839D-68BC0BBB9063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811657A1-8477-46F8-839D-68BC0BBB9063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44ECF0CF-4793-4D5E-AEB9-B167E038BF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44ECF0CF-4793-4D5E-AEB9-B167E038BF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44ECF0CF-4793-4D5E-AEB9-B167E038BF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44ECF0CF-4793-4D5E-AEB9-B167E038BF00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
