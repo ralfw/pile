@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pile.Engine.Persistent", "Pile.Engine.Persistent\Pile.Engine.Persistent.csproj", "{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test.Blackbox.PersistentPile", "test.Blackbox.PersistentPile\test.Blackbox.PersistentPile.csproj", "{D781606D-65D2-4869-AB0C-980A3BBD51AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D781606D-65D2-4869-AB0C-980A3BBD51AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D781606D-65D2-4869-AB0C-980A3BBD51AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D781606D-65D2-4869-AB0C-980A3BBD51AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D781606D-65D2-4869-AB0C-980A3BBD51AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
