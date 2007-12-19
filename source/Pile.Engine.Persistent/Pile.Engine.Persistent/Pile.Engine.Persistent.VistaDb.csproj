@@ -7,8 +7,8 @@
     <ProjectGuid>{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pile.Engine.Persistent</RootNamespace>
-    <AssemblyName>Pile.Engine.Persistent</AssemblyName>
+    <RootNamespace>Pile.Engine.Persistent.VistaDb</RootNamespace>
+    <AssemblyName>Pile.Engine.Persistent.VistaDb</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,10 +38,11 @@
     <Reference Include="VistaDB.NET20, Version=3.2.1.43, Culture=neutral, PublicKeyToken=dfc935afe2125461, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\VistaDB.NET20.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersistentPile.cs" />
+    <Compile Include="VistaDbPersistentPile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

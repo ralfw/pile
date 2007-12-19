@@ -49,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pile.Engine.Persistent\Pile.Engine.Persistent.csproj">
+    <ProjectReference Include="..\Pile.Engine.Persistent\Pile.Engine.Persistent.VistaDb.csproj">
       <Project>{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}</Project>
-      <Name>Pile.Engine.Persistent</Name>
+      <Name>Pile.Engine.Persistent.VistaDb</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
