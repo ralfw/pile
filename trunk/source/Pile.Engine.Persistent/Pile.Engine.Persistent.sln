@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pile.Engine.Persistent", "Pile.Engine.Persistent\Pile.Engine.Persistent.csproj", "{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pile.Engine.Persistent.VistaDb", "Pile.Engine.Persistent\Pile.Engine.Persistent.VistaDb.csproj", "{EAB5E2E6-F378-4682-8C37-F05BCCA519CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test.Blackbox.PersistentPile", "test.Blackbox.PersistentPile\test.Blackbox.PersistentPile.csproj", "{D781606D-65D2-4869-AB0C-980A3BBD51AA}"
 EndProject
