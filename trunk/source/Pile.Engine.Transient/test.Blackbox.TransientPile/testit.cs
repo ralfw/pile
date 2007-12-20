@@ -49,31 +49,8 @@ namespace test.Blackbox.TransientPile
             qualified = new List<long>(p.GetQualified(2));
             Assert.AreEqual(1, qualified.Count);
 
-            try
-            {
-                p.Create(-1);
-                Assert.Fail();
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-            }
-            catch
-            {
-                Assert.Fail();
-            }
-
-            try
-            {
-                p.Create(99);
-                Assert.Fail();
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-            }
-            catch
-            {
-                Assert.Fail();
-            }
+            p.Create(-1); // no problem to create a relation with a non-existent qualifier
+            p.Create(99);
         }
 
 
@@ -124,8 +101,8 @@ namespace test.Blackbox.TransientPile
         {
             IPile p = new Pile.Engine.Transient.TransientPile();
 
-            Assert.IsFalse(p.IsRoot(-1));
-            Assert.IsFalse(p.IsRoot(1));
+            Assert.IsTrue(p.IsRoot(-1));
+            Assert.IsTrue(p.IsRoot(1));
             p.Create();
             Assert.IsTrue(p.IsRoot(1));
 
@@ -207,6 +184,42 @@ namespace test.Blackbox.TransientPile
             Assert.AreEqual(3, children.Count);
             children = new List<long>(p.GetChildren(2, ParentModes.both, 1));
             Assert.AreEqual(1, children.Count);
+        }
+
+
+        [Test]
+        public void testGetQualifier()
+        {
+            IPile p = new Pile.Engine.Transient.TransientPile();
+
+            long r = p.Create(100);
+            Assert.AreEqual(100, p.GetQualifier(r));
+
+            r = p.Create(1, 2, 101);
+            Assert.AreEqual(101, p.GetQualifier(r));
+
+            Assert.AreEqual(0, p.GetQualifier(-99));
+        }
+
+
+        [Test]
+        public void testGetQualified()
+        {
+            IPile p = new Pile.Engine.Transient.TransientPile();
+
+            p.Create(); // 1
+            p.Create(100); // 2
+            p.Create(10, 11, 100); // 3
+            p.Create(110); // 4
+
+            List<long> qualified;
+            qualified = new List<long>(p.GetQualified(100));
+            Assert.AreEqual(2, qualified.Count);
+            Assert.AreEqual(2, qualified[0]);
+            Assert.AreEqual(3, qualified[1]);
+
+            qualified = new List<long>(p.GetQualified(110));
+            Assert.AreEqual(1, qualified.Count);
         }
     }
 }
