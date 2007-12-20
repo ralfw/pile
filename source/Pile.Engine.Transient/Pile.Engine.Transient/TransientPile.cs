@@ -56,8 +56,6 @@ namespace Pile.Engine.Transient
 
         public long Create(long qualifier)
         {
-            if (qualifier < 0 || qualifier >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid qualifier relation!");
-
             Relation r = new Relation(this.relations.Count, 0, 0, qualifier);
             this.relations.Add(r);
             this.countRoots++;
@@ -88,8 +86,6 @@ namespace Pile.Engine.Transient
 
         public long Create(long nParent, long aParent, long qualifier, out bool isNew)
         {
-            if (qualifier < 0 || qualifier >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid qualifier relation!");
-
             isNew = false;
             long rId = this.Lookup(nParent, aParent);
 
@@ -99,22 +95,28 @@ namespace Pile.Engine.Transient
                 this.relations.Add(r);
 
                 // register with nParent+aParent
-                Dictionary<long, long> relationsWithNParent;
-                if (!this.parentIndex.TryGetValue(nParent, out relationsWithNParent))
+                if (nParent != 0)
                 {
-                    relationsWithNParent = new Dictionary<long, long>();
-                    this.parentIndex.Add(nParent, relationsWithNParent);
+                    Dictionary<long, long> relationsWithNParent;
+                    if (!this.parentIndex.TryGetValue(nParent, out relationsWithNParent))
+                    {
+                        relationsWithNParent = new Dictionary<long, long>();
+                        this.parentIndex.Add(nParent, relationsWithNParent);
+                    }
+                    relationsWithNParent.Add(aParent, r.id);
                 }
-                relationsWithNParent.Add(aParent, r.id);
 
-                // register with aParent
-                List<long> relationsWithAParent;
-                if (!this.aParentIndex.TryGetValue(aParent, out relationsWithAParent))
+                if (aParent != 0)
                 {
-                    relationsWithAParent = new List<long>();
-                    this.aParentIndex.Add(aParent, relationsWithAParent);
+                    // register with aParent
+                    List<long> relationsWithAParent;
+                    if (!this.aParentIndex.TryGetValue(aParent, out relationsWithAParent))
+                    {
+                        relationsWithAParent = new List<long>();
+                        this.aParentIndex.Add(aParent, relationsWithAParent);
+                    }
+                    relationsWithAParent.Add(r.id);
                 }
-                relationsWithAParent.Add(r.id);
 
                 RegisterWithQualifier(qualifier, r.id);
 
@@ -128,7 +130,7 @@ namespace Pile.Engine.Transient
 
         private void RegisterWithQualifier(long qualifier, long relation)
         {
-            if (qualifier > 0)
+            if (qualifier != 0)
             {
                 List<long> qualifiedList;
                 if (!this.qualifierIndex.TryGetValue(qualifier, out qualifiedList))
@@ -144,9 +146,6 @@ namespace Pile.Engine.Transient
         #region relatives axis
         public long Lookup(long nParent, long aParent)
         {
-            if (nParent < 1 || nParent >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid normative parent relation!");
-            if (aParent < 1 || aParent >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid associative parent relation!");
-
             Dictionary<long, long> relationsWithNParent;
             if (this.parentIndex.TryGetValue(nParent, out relationsWithNParent))
             {
@@ -162,13 +161,19 @@ namespace Pile.Engine.Transient
 
         public bool TryGetParents(long child, out long nParent, out long aParent)
         {
-            if (child < 1 || child >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid child relation!");
+            if (child > 0 && child < this.relations.Count)
+            {
+                Relation r = this.relations[(int)child];
+                nParent = r.nParent;
+                aParent = r.aParent;
 
-            Relation r = this.relations[(int)child];
-            nParent = r.nParent;
-            aParent = r.aParent;
-
-            return nParent != 0;
+                return nParent != 0;
+            }
+            else
+            {
+                nParent = 0; aParent = 0;
+                return false;
+            }
         }
 
         public IEnumerable<long> GetChildren(long parent, ParentModes mode)
@@ -178,9 +183,6 @@ namespace Pile.Engine.Transient
 
         public IEnumerable<long> GetChildren(long parent, ParentModes mode, long qualifier)
         {
-            if (parent < 1 || parent >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid parent relation!");
-            if (qualifier < 0 || qualifier >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid qualifier!");
-
             List<long> children = new List<long>();
 
             // select all normative children
@@ -212,8 +214,6 @@ namespace Pile.Engine.Transient
         #region qualification axis
         public IEnumerable<long> GetQualified(long qualifier)
         {
-            if (qualifier < 1 || qualifier >= this.relations.Count) throw new ArgumentOutOfRangeException("Invalid qualifier relation!");
-
             List<long> qualifiedList;
             if (!this.qualifierIndex.TryGetValue(qualifier, out qualifiedList))
                 qualifiedList = new List<long>();
@@ -222,7 +222,10 @@ namespace Pile.Engine.Transient
 
         public long GetQualifier(long qualified)
         {
-            throw new Exception("The method or operation is not implemented.");
+            if (qualified >= 1 && qualified < this.relations.Count)
+                return this.relations[(int)qualified].qualifier;
+            else
+                return 0;
         }
 
         #endregion
@@ -233,7 +236,7 @@ namespace Pile.Engine.Transient
             if (relation >= 1 && relation < this.relations.Count)
                 return this.relations[(int)relation].nParent == 0;
             else
-                return false;
+                return true; // non-existing relations are viewed as roots
         }
 
         public int CountOfRelations
