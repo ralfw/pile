@@ -16,10 +16,6 @@ namespace TextAssimilator
         {
             this.pile = new Pile.Engine.Transient.TransientPile();
 
-            // allocate root relations for all ASCII chars (byte values 0..255)
-            for (int i = 1; i < 256; i++)
-                this.pile.Create();
-
             // create relation to connect all assimilated strings to
             this.rootOfAllStrings = this.pile.Create();
         }
@@ -31,9 +27,9 @@ namespace TextAssimilator
             byte[] bytes = System.Text.Encoding.Default.GetBytes(text);
             if (bytes.Length > 0)
             {
-                long currTextTop = bytes[0];
+                long currTextTop = -(long)bytes[0];
                 for (int i = 1; i < bytes.Length; i++)
-                    currTextTop = this.pile.Create(currTextTop, bytes[i]);
+                    currTextTop = this.pile.Create(currTextTop, -(long)bytes[i]);
 
                 this.pile.Create(this.rootOfAllStrings, currTextTop);
             }
@@ -57,8 +53,8 @@ namespace TextAssimilator
                     Regenerate(text, currTextTop);
                     return System.Text.Encoding.Default.GetString(text.ToArray());
                 }
-                else if (currTextTop < 256)
-                    return System.Text.Encoding.Default.GetString(new byte[] { (byte)currTextTop }); // single letter string
+                else if (currTextTop < 0)
+                    return System.Text.Encoding.Default.GetString(new byte[] { (byte)-currTextTop }); // single letter string
                 else
                     return ""; // empty string
             }
@@ -68,17 +64,17 @@ namespace TextAssimilator
 
         private void Regenerate(List<byte> text, long currTextTop)
         {
-            if (currTextTop < 256)
+            if (currTextTop < 0)
             {
                 // leftmost char reached
-                text.Add((byte)currTextTop);
+                text.Add((byte)-currTextTop);
             }
             else
             {
                 long nParent, aParent;
                 this.pile.TryGetParents(currTextTop, out nParent, out aParent);
                 Regenerate(text, nParent);
-                text.Add((byte)aParent);
+                text.Add((byte)-aParent);
             }
         }
 
