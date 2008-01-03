@@ -35,10 +35,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="VistaDB.NET20, Version=3.2.1.43, Culture=neutral, PublicKeyToken=dfc935afe2125461, processorArchitecture=MSIL">
+    <Reference Include="VistaDB.NET20, Version=3.3.1.49, Culture=neutral, PublicKeyToken=dfc935afe2125461, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\VistaDB.NET20.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
